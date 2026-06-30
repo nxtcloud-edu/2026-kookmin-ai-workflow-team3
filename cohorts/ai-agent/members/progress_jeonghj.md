@@ -19,6 +19,7 @@
 | 완료 | 홍명보 캐릭터 명세 및 대사 생성 스킬 | `Docs/홍명보_캐릭터명세.md`, `.cursor/skills/hongmyungbo-dialogue/` |
 | 완료 | 이벤트 4-1 경기장 사진 추가 | `image/경기장.jpg`, `Docs/events.md` |
 | 완료 | 멤버 progress 워크플로 및 본인 진행 기록 | `progress_jeonghj.md`, `member-progress` 스킬 |
+| 완료 | 엔딩 분기·수치 표시 규칙·32강 용어 정리 | `Docs/events.md` |
 | 대기 중 | 멕시코전·남아공전 이벤트 시나리오 | `Docs/events.md` |
 
 ## 완료된 작업
@@ -73,7 +74,18 @@
 - `image/경기장.jpg`
 - [Docs/events.md — 이벤트 4-1](../../../Docs/events.md)
 
-### 6. 멤버 progress 워크플로
+### 6. 엔딩 분기 및 수치 표시 규칙
+
+- 작업일: 2026년 6월 30일
+- 16강 → 32강 용어 통일 (2026 48팀 대회 형식)
+- 플레이 중 수치 비공개·엔딩에서만 공개 규칙 문서화
+- 엔딩 목록(E0~E3), 티어, 판정 로직 초안 추가
+
+결과물:
+
+- [Docs/events.md — 수치 규칙·엔딩 목록](../../../Docs/events.md)
+
+### 7. 멤버 progress 워크플로
 
 - 작업일: 2026년 6월 30일
 - `init-member-progress.ps1`, `member-progress` 스킬, `progress_jeonghj.md` 추가
