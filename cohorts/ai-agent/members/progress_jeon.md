@@ -12,9 +12,10 @@
 
 | 상태 | 작업 | 결과물 |
 |---|---|---|
-| 완료 | 2026 FIFA 월드컵 대한민국 vs 멕시코 경기 자료조사 | `2026-world-cup-korea-vs-mexico.md` |
-| 완료 | 대한민국 vs 멕시코 경기 전 정보 추가 조사 | `2026-world-cup-korea-vs-mexico.md` |
-| 완료 | 작업 진행 기록 파일 생성 | `progress.md` |
+| 완료 | 2026 FIFA 월드컵 대한민국 vs 멕시코 경기 자료조사 | `Docs/2026-world-cup-korea-vs-mexico.md` |
+| 완료 | 대한민국 vs 멕시코 경기 전 정보 추가 조사 | `Docs/2026-world-cup-korea-vs-mexico.md` |
+| 완료 | 작업 진행 기록 파일 생성 및 이동 반영 | `cohorts/ai-agent/members/progress_jeon.md` |
+| 완료 | 프로젝트 이미지 폴더와 스타일 가이드 생성 | `image/STYLE_GUIDE.md` |
 
 ## 완료된 작업
 
@@ -31,7 +32,7 @@
 
 결과물:
 
-- [2026 FIFA 월드컵 멕시코 vs 대한민국 경기 정리](./2026-world-cup-korea-vs-mexico.md)
+- [2026 FIFA 월드컵 멕시코 vs 대한민국 경기 정리](../../../Docs/2026-world-cup-korea-vs-mexico.md)
 
 ### 2. 대한민국 vs 멕시코 경기 전 정보 보강
 
@@ -45,7 +46,20 @@
 
 수정한 결과물:
 
-- [2026 FIFA 월드컵 멕시코 vs 대한민국 경기 정리](./2026-world-cup-korea-vs-mexico.md)
+- [2026 FIFA 월드컵 멕시코 vs 대한민국 경기 정리](../../../Docs/2026-world-cup-korea-vs-mexico.md)
+
+### 3. 프로젝트 이미지 관리 체계 생성
+
+- 저장소 루트에 `image` 폴더 생성
+- 현대적인 스포츠 에디토리얼 스타일을 기본 이미지 방향으로 설정
+- 색상, 타이포그래피, 구도, 출력 규격 정의
+- 이미지 생성 프롬프트 템플릿과 예시 작성
+- 저작권·브랜드 안전 및 품질 확인 기준 정리
+- 파일명과 버전 관리 규칙, 권장 하위 폴더 구조 정의
+
+결과물:
+
+- [프로젝트 이미지 스타일 가이드](../../../image/STYLE_GUIDE.md)
 
 ## 작업 관리 원칙
 
