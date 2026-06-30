@@ -5,6 +5,17 @@
       {
         "command": ".cursor/hooks/session-start.ps1"
       }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/sync-events-after-edit.ps1"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": ".cursor/hooks/sync-events-after-edit.ps1",
+        "matcher": "Write"
+      }
     ]
   }
 }

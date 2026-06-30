@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-deep-navy: #071426;
+  --color-slate-blue: #132a44;
+  --color-energy-red: #e63946;
+  --color-turf-green: #20c997;
+  --color-off-white: #f5f7fa;
+  --color-cool-gray: #aab4c3;
+  --font-sans: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--color-deep-navy);
+  color: var(--color-off-white);
+}
+
+#root {
+  min-height: 100vh;
+}

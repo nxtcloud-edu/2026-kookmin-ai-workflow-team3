@@ -34,9 +34,10 @@ git checkout main
 
 1. `Docs/project.md` — 프로젝트 목표
 2. `Docs/events.md` — 이벤트·분기 작업 시 (`Docs/홍명보_캐릭터명세.md` + [hongmyungbo-dialogue](../hongmyungbo-dialogue/SKILL.md) 스킬)
-3. `cohorts/ai-agent/members/progress_*.md` — 팀·개인 진행 상황
-4. `Docs/git-workflow.md` — Git 작업 시
-5. `image/STYLE_GUIDE.md` — 이미지 작업 시
+3. `web/` — 게임 화면·구현 시 ([react-vn-web](../react-vn-web/SKILL.md), 콘텐츠 동기화는 [events-to-data](../events-to-data/SKILL.md))
+4. `cohorts/ai-agent/members/progress_*.md` — 팀·개인 진행 상황
+5. `Docs/git-workflow.md` — Git 작업 시
+6. `image/STYLE_GUIDE.md` — 이미지 작업 시
 
 사용자가 본인 progress 파일을 지정하지 않으면 `cohorts/ai-agent/members/progress_*.md`를 확인한다. 없으면 `.\scripts\init-member-progress.ps1 -Nickname <닉네임>` 실행을 제안한다. 상세: [member-progress](../member-progress/SKILL.md).
 

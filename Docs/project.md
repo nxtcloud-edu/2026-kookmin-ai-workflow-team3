@@ -20,7 +20,10 @@
 
 ## 기술 스택
 
--
+- **게임 클라이언트**: React + Vite + TypeScript — [`web/`](../web/)
+- **상태 관리**: Zustand
+- **스타일**: Tailwind CSS v4
+- **콘텐츠**: [`Docs/events.md`](./events.md) (원본) → [`web/src/data/events.ts`](../web/src/data/events.ts) (런타임)
 
 ## 주요 기능
 
@@ -51,6 +54,7 @@
 │           ├── README.md
 │           └── progress_<이름>.md
 ├── scripts/                  # upstream sync, 브랜치, PR
+├── web/                      # React 미연시 클라이언트
 └── README.md
 ```
 
