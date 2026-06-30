@@ -1,4 +1,5 @@
 import { ChoiceButtons } from '@/components/ChoiceButtons'
+import { HomeButton } from '@/components/HomeButton'
 import { NarrativeBox } from '@/components/NarrativeBox'
 import { SceneImage } from '@/components/SceneImage'
 import { ScreenBackdrop } from '@/components/ScreenBackdrop'
@@ -29,6 +30,7 @@ export function EventScreen() {
 
   return (
     <ScreenBackdrop className="justify-center">
+      <HomeButton />
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 p-4 md:p-8">
         <SceneImage src={sceneImage} alt={event.title} />
 

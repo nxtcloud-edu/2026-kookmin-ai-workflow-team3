@@ -1,3 +1,4 @@
+import { HomeButton } from '@/components/HomeButton'
 import { SceneImage } from '@/components/SceneImage'
 import { ScreenBackdrop } from '@/components/ScreenBackdrop'
 import { getEvent } from '@/data/events'
@@ -16,6 +17,7 @@ export function ChapterScreen() {
 
   return (
     <ScreenBackdrop className="justify-center">
+      <HomeButton />
       <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-6 py-8 text-center">
         <SceneImage src={event.background} alt={event.title} />
 

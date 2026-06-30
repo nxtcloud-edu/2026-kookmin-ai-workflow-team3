@@ -1,3 +1,4 @@
+import { HomeButton } from '@/components/HomeButton'
 import { useGameStore } from '@/store/gameStore'
 
 const TIERS = [
@@ -48,6 +49,7 @@ export function StatsScreen() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-6">
       <div className="absolute inset-0 bg-linear-to-b from-slate-blue to-deep-navy" />
+      <HomeButton />
       <div className="relative z-10 w-full max-w-md">
         <p className="mb-2 text-center text-xs tracking-[0.2em] text-cool-gray uppercase">
           월드컵 본선 진출 확정
