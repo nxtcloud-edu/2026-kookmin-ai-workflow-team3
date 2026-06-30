@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { EndingCatalogPanel } from '@/components/EndingCatalogPanel'
 import { SceneImage } from '@/components/SceneImage'
 import { ScreenBackdrop } from '@/components/ScreenBackdrop'
 import { formatStat } from '@/game/tiers'
@@ -5,6 +7,7 @@ import { getEvent } from '@/data/events'
 import { useGameStore } from '@/store/gameStore'
 
 export function EndingScreen() {
+  const [showCatalog, setShowCatalog] = useState(false)
   const currentEventId = useGameStore((state) => state.currentEventId)
   const publicSentiment = useGameStore((state) => state.publicSentiment)
   const teamMorale = useGameStore((state) => state.teamMorale)
@@ -38,13 +41,28 @@ export function EndingScreen() {
             {ending.epilogue}
           </p>
 
-          <button
-            type="button"
-            onClick={resetGame}
-            className="rounded-lg border border-white/20 px-6 py-2 text-sm font-semibold text-off-white transition hover:border-energy-red/60 hover:text-white"
-          >
-            타이틀로
-          </button>
+          <div className="flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={() => setShowCatalog((open) => !open)}
+              className="rounded-lg border border-white/20 px-6 py-2 text-sm font-semibold text-off-white transition hover:border-turf-green/60 hover:text-white"
+              aria-expanded={showCatalog}
+            >
+              {showCatalog ? '엔딩 목록 닫기' : '다른 엔딩 목록 보기'}
+            </button>
+
+            {showCatalog && (
+              <EndingCatalogPanel currentEventId={currentEventId} />
+            )}
+
+            <button
+              type="button"
+              onClick={resetGame}
+              className="rounded-lg border border-white/20 px-6 py-2 text-sm font-semibold text-off-white transition hover:border-energy-red/60 hover:text-white"
+            >
+              타이틀로
+            </button>
+          </div>
         </div>
       </div>
     </ScreenBackdrop>

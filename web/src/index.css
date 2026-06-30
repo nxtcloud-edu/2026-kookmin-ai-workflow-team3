@@ -21,3 +21,32 @@ body {
 #root {
   min-height: 100vh;
 }
+
+@keyframes reaction-fade-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  72% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+}
+
+.reaction-bubble {
+  animation: reaction-fade-cycle var(--reaction-duration, 6s) ease-in-out
+    var(--reaction-delay, 0s) infinite;
+  opacity: 0;
+}
