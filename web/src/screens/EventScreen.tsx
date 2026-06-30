@@ -1,7 +1,7 @@
 import { BackgroundImage } from '@/components/BackgroundImage'
 import { ChoiceButtons } from '@/components/ChoiceButtons'
-import { FeedbackOverlay } from '@/components/FeedbackOverlay'
 import { NarrativeBox } from '@/components/NarrativeBox'
+import { StatTrendBadges } from '@/components/StatTrendBadges'
 import { getEvent } from '@/data/events'
 import { useGameStore } from '@/store/gameStore'
 
@@ -24,11 +24,30 @@ export function EventScreen() {
 
       <div className="relative z-10 mt-auto flex w-full flex-col gap-4 p-4 md:p-8">
         <div className="mx-auto w-full max-w-3xl">
-          <NarrativeBox title={event.title} text={event.text} />
+          {showFeedback ? (
+            <div className="flex flex-col gap-3">
+              <NarrativeBox
+                variant="feedback"
+                title="현장 반응"
+                text={feedback}
+              />
+              <StatTrendBadges effects={feedbackEffects} />
+            </div>
+          ) : (
+            <NarrativeBox title={event.title} text={event.text} />
+          )}
         </div>
 
         <div className="mx-auto w-full max-w-3xl">
-          {isAutoEvent ? (
+          {showFeedback ? (
+            <button
+              type="button"
+              onClick={dismissFeedback}
+              className="w-full rounded-lg bg-energy-red px-4 py-3 text-sm font-semibold text-white transition hover:bg-energy-red/90"
+            >
+              ▶ 계속
+            </button>
+          ) : isAutoEvent ? (
             <button
               type="button"
               onClick={advanceAuto}
@@ -38,23 +57,11 @@ export function EventScreen() {
             </button>
           ) : (
             event.choices && (
-              <ChoiceButtons
-                choices={event.choices}
-                onSelect={selectChoice}
-                disabled={phase === 'feedback'}
-              />
+              <ChoiceButtons choices={event.choices} onSelect={selectChoice} />
             )
           )}
         </div>
       </div>
-
-      {showFeedback && (
-        <FeedbackOverlay
-          message={feedback}
-          effects={feedbackEffects ?? undefined}
-          onContinue={dismissFeedback}
-        />
-      )}
     </main>
   )
 }

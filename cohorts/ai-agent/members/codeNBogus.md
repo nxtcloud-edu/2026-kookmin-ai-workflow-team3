@@ -20,6 +20,8 @@
 | 완료 | 이벤트 6-2 (전반 하이드레이션) 시나리오 작성 | `Docs/events.md` |
 | 완료 | 이벤트 6-3 (전반 이후 락커룸) 시나리오 작성 | `Docs/events.md` |
 | 완료 | 이벤트 6-4-1/2/3 (후반전 분기) 시나리오 작성 | `Docs/events.md` |
+| 완료 | 타이틀 화면 배경 이미지 및 제목 변경 | `web/src/screens/TitleScreen.tsx` |
+| 완료 | 이벤트 3→4 전환 시 점수 현황(StatsScreen) 추가 | `web/src/screens/StatsScreen.tsx` |
 | 대기 중 | 이벤트 4·5·6-5 시나리오 작성 | `Docs/events.md` |
 
 ## 완료된 작업
@@ -89,6 +91,29 @@
 
 결과물:
 - [Docs/events.md — 이벤트 6-3](../../../Docs/events.md)
+
+### 8. 타이틀 화면 배경·제목 변경
+
+- 작업일: 2026년 6월 30일
+- 배경 이미지: `image/국대감독이될래요.jpeg` 적용
+- 제목: "엄마, 나는 커서 국가대표\n감독이 될래요!" 로 변경
+
+결과물:
+- [web/src/screens/TitleScreen.tsx](../../../web/src/screens/TitleScreen.tsx)
+
+### 9. 이벤트 3→4 전환 시 점수 현황 화면 추가
+
+- 작업일: 2026년 6월 30일
+- StatsScreen 컴포넌트 신규 생성 — 국민 민심·선수단 분위기 수치와 티어 표시
+- `GamePhase`에 `'stats'` 추가, `__show-stats__:` 패턴으로 화면 전환 처리
+- event-3 autoNext: `__show-stats__:event-chapter-4` (스탯 → chapter → 이벤트 4)
+- upstream 동기화 중 `chapter` 페이즈 추가 충돌 해결
+
+결과물:
+- [web/src/screens/StatsScreen.tsx](../../../web/src/screens/StatsScreen.tsx)
+- [web/src/game/types.ts](../../../web/src/game/types.ts)
+- [web/src/store/gameStore.ts](../../../web/src/store/gameStore.ts)
+- [web/src/App.tsx](../../../web/src/App.tsx)
 
 ## 다음 작업
 
