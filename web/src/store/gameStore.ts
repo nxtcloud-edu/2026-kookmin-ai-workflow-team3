@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { getEvent } from '@/data/events'
+import { getPublicReactions } from '@/data/publicReactions'
 import { resolve6_4Branch, resolveEndingId } from '@/game/endingResolver'
-import type { ChoiceSnapshot, GamePhase, StatEffects } from '@/game/types'
+import type { ChoiceSnapshot, GamePhase, PublicReaction, StatEffects } from '@/game/types'
 
 const INITIAL_EVENT_ID = 'event-1'
 
@@ -14,9 +15,12 @@ type GameStore = {
   feedbackEffects: StatEffects | null
   previousChoiceState: ChoiceSnapshot | null
   pendingNext: string | null
+  pendingReactions: PublicReaction[] | null
+  activeReactions: PublicReaction[] | null
   flags: Record<string, boolean>
   tournamentResult: 'round-of-32' | 'eliminated' | null
   startGame: () => void
+  clearReactions: () => void
   selectChoice: (choiceId: string) => void
   advanceAuto: () => void
   advanceChapter: () => void
@@ -74,11 +78,31 @@ function resolveNextId(
   return { eventId: nextId, flags, tournamentResult }
 }
 
+function withEventReactions(
+  next: Partial<GameStore>,
+  pendingReactions: PublicReaction[] | null,
+): Partial<GameStore> {
+  if (next.phase !== 'event' || !pendingReactions?.length) {
+    return {
+      ...next,
+      pendingReactions: null,
+      activeReactions: null,
+    }
+  }
+
+  return {
+    ...next,
+    pendingReactions: null,
+    activeReactions: pendingReactions,
+  }
+}
+
 function resolveNext(
   nextId: string,
   stats: { publicSentiment: number; teamMorale: number },
   flags: Record<string, boolean>,
   tournamentResult: GameStore['tournamentResult'],
+  pendingReactions: PublicReaction[] | null = null,
 ): Partial<GameStore> {
   if (nextId.startsWith('__show-stats__:')) {
     const afterStats = nextId.slice('__show-stats__:'.length)
@@ -88,6 +112,8 @@ function resolveNext(
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: afterStats,
+      pendingReactions: null,
+      activeReactions: null,
       flags,
       tournamentResult,
       ...stats,
@@ -104,6 +130,8 @@ function resolveNext(
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: null,
+      pendingReactions: null,
+      activeReactions: null,
       flags: {},
       tournamentResult: null,
     }
@@ -120,6 +148,8 @@ function resolveNext(
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: null,
+      pendingReactions: null,
+      activeReactions: null,
       flags: resolved.flags,
       tournamentResult: resolved.tournamentResult,
       ...stats,
@@ -134,23 +164,28 @@ function resolveNext(
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: null,
+      pendingReactions: null,
+      activeReactions: null,
       flags: resolved.flags,
       tournamentResult: resolved.tournamentResult,
       ...stats,
     }
   }
 
-  return {
-    phase: 'event',
-    currentEventId: resolved.eventId,
-    feedback: null,
-    feedbackEffects: null,
-    previousChoiceState: null,
-    pendingNext: null,
-    flags: resolved.flags,
-    tournamentResult: resolved.tournamentResult,
-    ...stats,
-  }
+  return withEventReactions(
+    {
+      phase: 'event',
+      currentEventId: resolved.eventId,
+      feedback: null,
+      feedbackEffects: null,
+      previousChoiceState: null,
+      pendingNext: null,
+      flags: resolved.flags,
+      tournamentResult: resolved.tournamentResult,
+      ...stats,
+    },
+    pendingReactions,
+  )
 }
 
 export const useGameStore = create<GameStore>((set, get) => ({
@@ -162,6 +197,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   feedbackEffects: null,
   previousChoiceState: null,
   pendingNext: null,
+  pendingReactions: null,
+  activeReactions: null,
   flags: {},
   tournamentResult: null,
 
@@ -175,9 +212,13 @@ export const useGameStore = create<GameStore>((set, get) => ({
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: null,
+      pendingReactions: null,
+      activeReactions: null,
       flags: {},
       tournamentResult: null,
     }),
+
+  clearReactions: () => set({ activeReactions: null }),
 
   selectChoice: (choiceId) => {
     const {
@@ -199,6 +240,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const nextFlags = choice.setFlag
       ? { ...flags, [choice.setFlag]: true }
       : flags
+    const reactions =
+      choice.reactions ?? getPublicReactions(currentEventId, choiceId)
 
     if (choice.feedback) {
       set({
@@ -215,11 +258,20 @@ export const useGameStore = create<GameStore>((set, get) => ({
           tournamentResult,
         },
         pendingNext: choice.next,
+        pendingReactions: reactions.length ? reactions : null,
       })
       return
     }
 
-    set(resolveNext(choice.next, stats, nextFlags, tournamentResult))
+    set(
+      resolveNext(
+        choice.next,
+        stats,
+        nextFlags,
+        tournamentResult,
+        reactions.length ? reactions : null,
+      ),
+    )
   },
 
   advanceAuto: () => {
@@ -239,6 +291,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       teamMorale,
       event.autoEffects,
     )
+    const reactions =
+      event.autoReactions ?? getPublicReactions(currentEventId)
 
     if (event.autoFeedback) {
       set({
@@ -248,11 +302,20 @@ export const useGameStore = create<GameStore>((set, get) => ({
         feedbackEffects: event.autoEffects ?? null,
         previousChoiceState: null,
         pendingNext: event.autoNext,
+        pendingReactions: reactions.length ? reactions : null,
       })
       return
     }
 
-    set(resolveNext(event.autoNext, stats, flags, tournamentResult))
+    set(
+      resolveNext(
+        event.autoNext,
+        stats,
+        flags,
+        tournamentResult,
+        reactions.length ? reactions : null,
+      ),
+    )
   },
 
   advanceChapter: () => {
@@ -292,19 +355,29 @@ export const useGameStore = create<GameStore>((set, get) => ({
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: null,
+      pendingReactions: null,
     })
   },
 
   dismissFeedback: () => {
     const {
       pendingNext,
+      pendingReactions,
       publicSentiment,
       teamMorale,
       flags,
       tournamentResult,
     } = get()
     if (!pendingNext) return
-    set(resolveNext(pendingNext, { publicSentiment, teamMorale }, flags, tournamentResult))
+    set(
+      resolveNext(
+        pendingNext,
+        { publicSentiment, teamMorale },
+        flags,
+        tournamentResult,
+        pendingReactions,
+      ),
+    )
   },
 
   resetGame: () =>
@@ -317,6 +390,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       feedbackEffects: null,
       previousChoiceState: null,
       pendingNext: null,
+      pendingReactions: null,
+      activeReactions: null,
       flags: {},
       tournamentResult: null,
     }),

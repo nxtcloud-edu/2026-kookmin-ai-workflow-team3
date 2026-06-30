@@ -1,6 +1,7 @@
 import { ChoiceButtons } from '@/components/ChoiceButtons'
 import { HomeButton } from '@/components/HomeButton'
 import { NarrativeBox } from '@/components/NarrativeBox'
+import { PublicReactionOverlay } from '@/components/PublicReactionOverlay'
 import { SceneImage } from '@/components/SceneImage'
 import { ScreenBackdrop } from '@/components/ScreenBackdrop'
 import { StatTrendBadges } from '@/components/StatTrendBadges'
@@ -15,10 +16,12 @@ export function EventScreen() {
   const canUndoChoice = useGameStore(
     (state) => state.previousChoiceState !== null,
   )
+  const activeReactions = useGameStore((state) => state.activeReactions)
   const selectChoice = useGameStore((state) => state.selectChoice)
   const advanceAuto = useGameStore((state) => state.advanceAuto)
   const undoChoice = useGameStore((state) => state.undoChoice)
   const dismissFeedback = useGameStore((state) => state.dismissFeedback)
+  const clearReactions = useGameStore((state) => state.clearReactions)
 
   const event = getEvent(currentEventId)
   const isAutoEvent = Boolean(event.autoNext)
@@ -31,6 +34,12 @@ export function EventScreen() {
   return (
     <ScreenBackdrop className="justify-center">
       <HomeButton />
+      {activeReactions && phase === 'event' && (
+        <PublicReactionOverlay
+          reactions={activeReactions}
+          onComplete={clearReactions}
+        />
+      )}
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 p-4 md:p-8">
         <SceneImage src={sceneImage} alt={event.title} />
 

@@ -148,7 +148,7 @@ export const events: Record<string, GameEvent> = {
         id: 'A',
         label:
           '손흥민, 수고 많았다. 체코가 네 뒷공간만 조이고 있으니… 준비해 둔 대로 오현규 넣겠다. 끝까지 포기하지 말자.',
-        next: 'event-chapter-5',
+        next: 'event-4-2',
         effects: { publicSentiment: 20, teamMorale: 25 },
         feedback:
           '오현규 투입 직후 흐름이 바뀐다. 황인범 동점, 오현규 역전. 김승규 선방으로 2-1 승리. 라커룸에 웃음이 터진다.',
@@ -157,10 +157,45 @@ export const events: Record<string, GameEvent> = {
         id: 'B',
         label:
           '손흥민, 그 장면에서 조금 더 침착했어야 했는데… 그 부분은 아쉽다. 오늘은 여기까지다. 나와.',
-        next: 'event-chapter-5',
+        next: 'event-4-2',
         effects: { publicSentiment: -35, teamMorale: -15 },
         feedback:
           '2-1 역전승이지만 손흥민은 물병도 받지 않았다. 다음 날 "주장 교체 직후 선수 탓" 기사가 올라온다.',
+      },
+    ],
+  },
+  'event-4-2': {
+    id: 'event-4-2',
+    title: '체코전 기자회견',
+    background: pressConferenceImg,
+    text: '체코전 2-1 역전승 직후 기자회견장. 플래시가 터지지만 질문은 날카롭다. 손흥민 교체와 슈팅 6번 무득점, 경기 직후 믹스트존 인터뷰 거절까지—승리했어도 감독의 한마디가 여론을 갈라놓을 수 있다.',
+    choices: [
+      {
+        id: 'A',
+        label:
+          '오늘은 선수들이 정말 잘해줬다는 말밖에 할 수 없다. 끝까지 포기하지 말자고 말했는데, 선수들이 그 말을 충족시켰다. 하나가 돼 경기한 게 승리의 이유다.',
+        next: 'event-chapter-5',
+        effects: { publicSentiment: 15, teamMorale: 10 },
+        feedback:
+          '"역전의 정신력" 제목의 긍정 기사가 올라온다. 손흥민과 눈이 잠깐 마주친다.',
+      },
+      {
+        id: 'B',
+        label:
+          '준비한 대로 했다. 월드컵 첫 경기라 양 팀 다 긴장했고… 손흥민 교체는 경기 흐름상 필요했던 선택이다. 그 부분은 아쉽지만 결과적으로 승리했으니 만족한다.',
+        next: 'event-chapter-5',
+        effects: { publicSentiment: -5, teamMorale: 0 },
+        feedback:
+          '기자들이 "구체적으로 뭐가 준비한 대로냐"고 재질문한다. 여론은 양분되지만 경기 결과만으로는 비판이 크지 않다.',
+      },
+      {
+        id: 'C',
+        label:
+          '손흥민이 슈팅은 많이 했는데 마무리가 아쉬웠다. 교체는 그 부분을 고려한 거고, 그 장면에서 조금 더 침착했으면 역전이 더 빨랐을 수도 있다.',
+        next: 'event-chapter-5',
+        effects: { publicSentiment: -25, teamMorale: -10 },
+        feedback:
+          '"역전승에도 손흥민 탓?" 기사가 실시간 검색에 오른다. 4-1 B 루트와 겹치면 여론이 폭발한다.',
       },
     ],
   },

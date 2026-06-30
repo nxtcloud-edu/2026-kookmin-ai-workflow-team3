@@ -13,12 +13,21 @@ export type ChoiceSnapshot = {
   tournamentResult: 'round-of-32' | 'eliminated' | null
 }
 
+/** 좌우 여백에 띄울 SNS·여론 댓글 (수치 비노출) */
+export type PublicReaction = {
+  text: string
+  /** 콘텐츠 메타. 화면 배치는 런타임 랜덤 */
+  side?: 'left' | 'right'
+}
+
 export type Choice = {
   id: string
   label: string
   next: string
   effects?: StatEffects
   feedback?: string
+  /** 선택 직후·다음 이벤트에서 보여줄 여론 댓글 풀 */
+  reactions?: PublicReaction[]
   setFlag?: string
 }
 
@@ -45,6 +54,8 @@ export type GameEvent = {
   autoNext?: string
   autoEffects?: StatEffects
   autoFeedback?: string
+  /** autoNext 이벤트의 여론 댓글 풀 */
+  autoReactions?: PublicReaction[]
   type?: 'chapter' | 'ending'
   chapter?: ChapterInfo
   ending?: EndingInfo
