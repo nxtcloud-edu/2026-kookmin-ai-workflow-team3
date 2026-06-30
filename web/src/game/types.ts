@@ -5,6 +5,14 @@ export type StatEffects = {
   teamMorale?: number
 }
 
+export type ChoiceSnapshot = {
+  currentEventId: string
+  publicSentiment: number
+  teamMorale: number
+  flags: Record<string, boolean>
+  tournamentResult: 'round-of-32' | 'eliminated' | null
+}
+
 export type Choice = {
   id: string
   label: string
@@ -49,6 +57,7 @@ export type GameState = {
   currentEventId: string
   feedback: string | null
   feedbackEffects: StatEffects | null
+  previousChoiceState: ChoiceSnapshot | null
   pendingNext: string | null
   flags: Record<string, boolean>
   tournamentResult: 'round-of-32' | 'eliminated' | null
