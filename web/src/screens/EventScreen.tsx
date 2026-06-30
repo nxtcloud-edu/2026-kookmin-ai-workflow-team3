@@ -11,8 +11,12 @@ export function EventScreen() {
   const currentEventId = useGameStore((state) => state.currentEventId)
   const feedback = useGameStore((state) => state.feedback)
   const feedbackEffects = useGameStore((state) => state.feedbackEffects)
+  const canUndoChoice = useGameStore(
+    (state) => state.previousChoiceState !== null,
+  )
   const selectChoice = useGameStore((state) => state.selectChoice)
   const advanceAuto = useGameStore((state) => state.advanceAuto)
+  const undoChoice = useGameStore((state) => state.undoChoice)
   const dismissFeedback = useGameStore((state) => state.dismissFeedback)
 
   const event = getEvent(currentEventId)
@@ -42,13 +46,28 @@ export function EventScreen() {
         )}
 
         {showFeedback ? (
-          <button
-            type="button"
-            onClick={dismissFeedback}
-            className="w-full rounded-lg bg-energy-red px-4 py-3 text-sm font-semibold text-white transition hover:bg-energy-red/90"
+          <div
+            className={`grid gap-3 ${
+              canUndoChoice ? 'grid-cols-2' : 'grid-cols-1'
+            }`}
           >
-            ▶ 계속
-          </button>
+            {canUndoChoice && (
+              <button
+                type="button"
+                onClick={undoChoice}
+                className="w-full rounded-lg border border-white/25 bg-deep-navy/80 px-4 py-3 text-sm font-semibold text-off-white transition hover:border-white/50 hover:bg-slate-blue"
+              >
+                ↩ 다시 선택
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={dismissFeedback}
+              className="w-full rounded-lg bg-energy-red px-4 py-3 text-sm font-semibold text-white transition hover:bg-energy-red/90"
+            >
+              ▶ 계속
+            </button>
+          </div>
         ) : isAutoEvent ? (
           <button
             type="button"
