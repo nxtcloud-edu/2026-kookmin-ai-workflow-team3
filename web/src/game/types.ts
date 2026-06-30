@@ -30,6 +30,8 @@ export type GameEvent = {
   id: string
   title: string
   background?: string
+  /** 피드백(현장 반응) 단계에서 표시할 배경. 없으면 background 유지 */
+  feedbackBackground?: string
   text: string
   choices?: Choice[]
   autoNext?: string
