@@ -168,7 +168,7 @@ export const events: Record<string, GameEvent> = {
     id: 'event-5-1',
     title: 'VS 멕시코 — 전술회의',
     background: guadalajaraImg,
-    text: '체코와 멕시코가 나란히 1차전에서 승리해, 이 경기의 승자는 32강 진출을 조기에 확정한다. 멕시코는 홈 관중의 응원을 받지만 주전 중앙수비수 세사르 몬테스가 징계로 결장한다.',
+    text: '대한민국과 멕시코가 나란히 1차전에서 승리해, 이 경기의 승자는 32강 진출을 조기에 확정한다. 멕시코는 홈 관중의 응원을 받지만 주전 중앙수비수 세사르 몬테스가 징계로 결장한다.',
     choices: [
       {
         id: 'A',
