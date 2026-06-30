@@ -19,6 +19,7 @@
 | 완료 | 홍명보 캐릭터 명세 및 대사 생성 스킬 | `Docs/홍명보_캐릭터명세.md`, `.cursor/skills/hongmyungbo-dialogue/` |
 | 완료 | 이벤트 4-1 경기장 사진 추가 | `image/경기장.jpg`, `Docs/events.md` |
 | 완료 | 멤버 progress 워크플로 및 본인 진행 기록 | `progress_jeonghj.md`, `member-progress` 스킬 |
+| 완료 | 체코전 이벤트 4-1 선택 결과 작성 | `Docs/events.md` |
 | 대기 중 | 멕시코전·남아공전 이벤트 시나리오 | `Docs/events.md` |
 
 ## 완료된 작업
@@ -73,7 +74,17 @@
 - `image/경기장.jpg`
 - [Docs/events.md — 이벤트 4-1](../../../Docs/events.md)
 
-### 6. 멤버 progress 워크플로
+### 6. 체코전 이벤트 4-1 선택 결과
+
+- 작업일: 2026년 6월 30일
+- A(전술·존중) / B(책임 전가) 분기별 경기 연출·내부 수치·연출 피드백 작성
+- 양 분기 모두 2-1 역전승, 민심·사기 변화로 톤 분기
+
+결과물:
+
+- [Docs/events.md — 이벤트 4-1 결과](../../../Docs/events.md)
+
+### 7. 멤버 progress 워크플로
 
 - 작업일: 2026년 6월 30일
 - `init-member-progress.ps1`, `member-progress` 스킬, `progress_jeonghj.md` 추가
