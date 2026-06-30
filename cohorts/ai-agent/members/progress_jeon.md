@@ -89,7 +89,7 @@
 - `image/과달라하라 경기장.webp`
 - `image/김승규실책.jpg`
 - `image/멕시코실점후.jpg`
-- `image/멕시코경기후.avif`
+- `image/멕시코경기후.jpg`
 
 ## 작업 관리 원칙
 
