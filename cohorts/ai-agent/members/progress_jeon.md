@@ -21,6 +21,7 @@
 | 완료 | 이미지 스타일 가이드 삭제 및 참조 정리 | `AGENTS.md`, `.cursor/skills/kookmin-team-workflow/SKILL.md` |
 | 완료 | 선택 결과의 민심·분위기 변화 방향 표시 | `web/src/` |
 | 완료 | 선택 결과 다시 선택 기능 추가 | `web/src/` |
+| 완료 | 게임 중 처음으로 이동 기능 추가 | `web/src/` |
 
 ## 완료된 작업
 
@@ -131,6 +132,20 @@
 - `web/src/screens/EventScreen.tsx`
 - `web/src/store/gameStore.ts`
 - `web/src/game/types.ts`
+
+### 9. 게임 중 처음으로 이동 기능 추가
+
+- 이벤트, 챕터, 점수 화면 오른쪽 상단에 공통 `처음으로` 버튼 추가
+- 현재 진행 상황 초기화를 알리는 확인 모달 구현
+- 취소, 배경 클릭, `Esc` 키로 모달을 닫을 수 있도록 처리
+- 확인 시 Store의 `resetGame()`을 호출해 타이틀 화면으로 이동
+
+수정한 결과물:
+
+- `web/src/components/HomeButton.tsx`
+- `web/src/screens/EventScreen.tsx`
+- `web/src/screens/ChapterScreen.tsx`
+- `web/src/screens/StatsScreen.tsx`
 
 ## 작업 관리 원칙
 
