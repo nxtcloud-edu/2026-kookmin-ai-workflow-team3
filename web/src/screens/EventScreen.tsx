@@ -9,6 +9,7 @@ export function EventScreen() {
   const phase = useGameStore((state) => state.phase)
   const currentEventId = useGameStore((state) => state.currentEventId)
   const feedback = useGameStore((state) => state.feedback)
+  const feedbackEffects = useGameStore((state) => state.feedbackEffects)
   const selectChoice = useGameStore((state) => state.selectChoice)
   const advanceAuto = useGameStore((state) => state.advanceAuto)
   const dismissFeedback = useGameStore((state) => state.dismissFeedback)
@@ -48,7 +49,11 @@ export function EventScreen() {
       </div>
 
       {showFeedback && (
-        <FeedbackOverlay message={feedback} onContinue={dismissFeedback} />
+        <FeedbackOverlay
+          message={feedback}
+          effects={feedbackEffects ?? undefined}
+          onContinue={dismissFeedback}
+        />
       )}
     </main>
   )

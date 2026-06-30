@@ -19,6 +19,7 @@
 | 완료 | 사진 우선 원칙에 맞게 이미지 스타일 가이드 개정 | `image/STYLE_GUIDE.md` (현재 삭제됨) |
 | 완료 | 멕시코전 이벤트 세분화 및 배경 이미지 연결 | `Docs/events.md`, `image/` |
 | 완료 | 이미지 스타일 가이드 삭제 및 참조 정리 | `AGENTS.md`, `.cursor/skills/kookmin-team-workflow/SKILL.md` |
+| 완료 | 선택 결과의 민심·분위기 변화 방향 표시 | `web/src/` |
 
 ## 완료된 작업
 
@@ -102,6 +103,20 @@
 
 - [에이전트 작업 가이드](../../../AGENTS.md)
 - [팀 작업 스킬](../../../.cursor/skills/kookmin-team-workflow/SKILL.md)
+
+### 7. 선택 결과의 민심·분위기 변화 방향 표시
+
+- 선택 결과 화면에 선수단 분위기와 국민 민심의 상승·하락 방향 추가
+- 정확한 수치는 숨기고 `↑`, `↓` 기호와 색상으로 경향만 표시
+- 두 지표가 서로 다른 방향으로 변하는 경우를 독립적으로 처리
+- 자동 진행 이벤트에도 동일한 표시 방식 적용
+
+수정한 결과물:
+
+- `web/src/components/FeedbackOverlay.tsx`
+- `web/src/screens/EventScreen.tsx`
+- `web/src/store/gameStore.ts`
+- `web/src/game/types.ts`
 
 ## 작업 관리 원칙
 

@@ -11,6 +11,7 @@ type GameStore = {
   teamMorale: number
   currentEventId: string
   feedback: string | null
+  feedbackEffects: StatEffects | null
   pendingNext: string | null
   flags: Record<string, boolean>
   tournamentResult: 'round-of-32' | 'eliminated' | null
@@ -83,6 +84,7 @@ function resolveNext(
       teamMorale: 0,
       currentEventId: INITIAL_EVENT_ID,
       feedback: null,
+      feedbackEffects: null,
       pendingNext: null,
       flags: {},
       tournamentResult: null,
@@ -97,6 +99,7 @@ function resolveNext(
       phase: 'ending',
       currentEventId: resolved.eventId,
       feedback: null,
+      feedbackEffects: null,
       pendingNext: null,
       flags: resolved.flags,
       tournamentResult: resolved.tournamentResult,
@@ -108,6 +111,7 @@ function resolveNext(
     phase: 'event',
     currentEventId: resolved.eventId,
     feedback: null,
+    feedbackEffects: null,
     pendingNext: null,
     flags: resolved.flags,
     tournamentResult: resolved.tournamentResult,
@@ -121,6 +125,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   teamMorale: 0,
   currentEventId: INITIAL_EVENT_ID,
   feedback: null,
+  feedbackEffects: null,
   pendingNext: null,
   flags: {},
   tournamentResult: null,
@@ -132,6 +137,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       teamMorale: 0,
       currentEventId: INITIAL_EVENT_ID,
       feedback: null,
+      feedbackEffects: null,
       pendingNext: null,
       flags: {},
       tournamentResult: null,
@@ -161,6 +167,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         flags: nextFlags,
         phase: 'feedback',
         feedback: choice.feedback,
+        feedbackEffects: choice.effects ?? null,
         pendingNext: choice.next,
       })
       return
@@ -192,6 +199,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         ...stats,
         phase: 'feedback',
         feedback: event.autoFeedback,
+        feedbackEffects: event.autoEffects ?? null,
         pendingNext: event.autoNext,
       })
       return
@@ -219,6 +227,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       teamMorale: 0,
       currentEventId: INITIAL_EVENT_ID,
       feedback: null,
+      feedbackEffects: null,
       pendingNext: null,
       flags: {},
       tournamentResult: null,

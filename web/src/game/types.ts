@@ -40,6 +40,7 @@ export type GameState = {
   teamMorale: number
   currentEventId: string
   feedback: string | null
+  feedbackEffects: StatEffects | null
   pendingNext: string | null
   flags: Record<string, boolean>
   tournamentResult: 'round-of-32' | 'eliminated' | null
