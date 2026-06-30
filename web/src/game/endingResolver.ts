@@ -23,23 +23,19 @@ export function resolveEndingId(
     if (teamMorale <= -80 && flags['event-6-1-C']) {
       return 'event-7-6'
     }
-    if (publicSentiment >= 30 && teamMorale <= -30) {
+    if (publicSentiment >= -140 && teamMorale <= -30) {
       return 'event-7-7'
     }
     return 'event-7-8'
   }
 
-  if (
-    teamMorale >= 80 &&
-    publicSentiment >= 30
-  ) {
+  if (teamMorale >= 140 && publicSentiment >= -55) {
     return 'event-7-2'
   }
-
-  if (publicSentiment >= 30 && teamMorale >= 30) {
+  if (publicSentiment >= -120 && teamMorale >= 40) {
     return 'event-7-3'
   }
-  if (publicSentiment <= -30 && teamMorale >= 30) {
+  if (publicSentiment <= -150 && teamMorale >= 50) {
     return 'event-7-5'
   }
   return 'event-7-4'
