@@ -77,6 +77,17 @@ function resolveNext(
   flags: Record<string, boolean>,
   tournamentResult: GameStore['tournamentResult'],
 ): Partial<GameStore> {
+  if (nextId.startsWith('__show-stats__:')) {
+    const afterStats = nextId.slice('__show-stats__:'.length)
+    return {
+      phase: 'stats',
+      pendingNext: afterStats,
+      flags,
+      tournamentResult,
+      ...stats,
+    }
+  }
+
   if (nextId === '__title__') {
     return {
       phase: 'title',

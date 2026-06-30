@@ -1,4 +1,4 @@
-export type GamePhase = 'title' | 'chapter' | 'event' | 'feedback' | 'ending'
+export type GamePhase = 'title' | 'chapter' | 'event' | 'feedback' | 'stats' | 'ending'
 
 export type StatEffects = {
   publicSentiment?: number

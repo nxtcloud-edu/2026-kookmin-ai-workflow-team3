@@ -126,7 +126,7 @@ export const events: Record<string, GameEvent> = {
     title: '월드컵 최종 예선',
     background: afcQualifiersImg,
     text: '2024~2025년 AFC 3차 최종 예선. B조에서 이라크·요르단·오만·쿠웨이트·팔레스타인과 경기를 치른다. 조 2위로 2026 북중미 월드컵 본선 진출을 확정했다.',
-    autoNext: 'event-chapter-4',
+    autoNext: '__show-stats__:event-chapter-4',
     autoEffects: { publicSentiment: -40, teamMorale: 0 },
     autoFeedback:
       '경기력 논란은 끊이지 않았지만, 어찌됐든 월드컵 본선 티켓은 땄다.',
